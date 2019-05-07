@@ -728,6 +728,7 @@ id left
 id line1
 id line3
 id listMode
+id listViewModule
 id list_item
 id lvWeek
 id message
@@ -794,7 +795,6 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
-id textViewC347
 id textViewDG
 id textViewGrade
 id textViewWeek

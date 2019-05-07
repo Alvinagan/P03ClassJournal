@@ -33,10 +33,20 @@ public class InformationActivity extends AppCompatActivity {
         week = new ArrayList<Week>();
 
         Intent i = getIntent();
-        this.setTitle("Info for C347");
-        week.add(new Week(1, "C347", "B"));
-        week.add(new Week(2, "C347", "C"));
-        week.add(new Week(3, "C347", "A"));
+        final String type = i.getStringExtra("type");
+        this.setTitle("Info for " + type);
+
+        if (type.equals("C347")){
+            week.add(new Week(1, "C347", "B"));
+            week.add(new Week(2, "C347", "C"));
+            week.add(new Week(3, "C347", "A"));
+
+        } else {
+            week.add(new Week(1, "C302", "C"));
+            week.add(new Week(2, "C302", "A"));
+            week.add(new Week(3, "C302", "A"));
+        }
+
 
         aa = new WeekAdapter(this, R.layout.grade_row, week);
         lvWeek.setAdapter(aa);
@@ -46,7 +56,11 @@ public class InformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent rpIntent = new Intent(Intent.ACTION_VIEW);
-                rpIntent.setData(Uri.parse("http://www.rp.edu.sg"));
+                if(type.equals("C347")) {
+                    rpIntent.setData(Uri.parse("https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C347"));
+                } else {
+                    rpIntent.setData(Uri.parse("https://www.rp.edu.sg/schools-courses/courses/full-time-diplomas/full-time-courses/modules/index/C302"));
+                }
                 startActivity(rpIntent);
             }
         });
@@ -111,7 +125,7 @@ public class InformationActivity extends AppCompatActivity {
 
                 String newGrade = data.getStringExtra("grade");
 
-                week.add(new Week(lvWeek.getAdapter().getCount() + 1, "C347", newGrade));
+                week.add(new Week(lvWeek.getAdapter().getCount() + 1, "C302", newGrade));
 
                 aa.notifyDataSetChanged();
 
